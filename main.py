@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timedelta
 import yfinance as yf
@@ -6,7 +6,14 @@ import pandas as pd
 import numpy as np
 from typing import Dict, List, Optional
 
+# Import Firebase config et router backtesting
+from firebase_config import db
+from routers import backtesting
+
 app = FastAPI(title="Oracle Portfolio WOW V1 - Real Data Backend")
+
+# Inclure le router backtesting
+app.include_router(backtesting.router) Data Backend")
 
 app.add_middleware(
     CORSMiddleware,
