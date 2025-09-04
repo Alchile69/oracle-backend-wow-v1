@@ -13,7 +13,7 @@ VERSION = "2.1.0-debug"
 
 # Import Firebase config et router backtesting
 from firebase_config import db
-from routers import backtesting
+from routers.backtesting import router as backtesting_router
 
 app = FastAPI(title="Oracle Portfolio WOW V1 - Real Data Backend")
 
@@ -22,8 +22,8 @@ app = FastAPI(title="Oracle Portfolio WOW V1 - Real Data Backend")
 def health():
     return {"status": "ok"}
 
-# Inclure le router backtesting
-app.include_router(backtesting.router)
+# Enregistrer EXPLICITEMENT le router backtesting
+app.include_router(backtesting_router, prefix="/api/backtest")
 
 app.add_middleware(
     CORSMiddleware,

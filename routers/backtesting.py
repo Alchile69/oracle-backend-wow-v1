@@ -30,7 +30,7 @@ if FIRESTORE_AVAILABLE:
 else:
     logger.warning("⚠️ Firestore not available, using in-memory storage")
 
-router = APIRouter(prefix="/api/backtest", tags=["backtesting"])
+router = APIRouter(tags=["backtesting"])
 
 # Fallback in-memory storage if Firestore is not available
 backtest_status_store: Dict[str, BacktestStatus] = {}
