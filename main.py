@@ -10,7 +10,8 @@ from typing import Dict, List, Optional
 VERSION = "2.1.0-debug"
 
 # Import Firebase config et router backtesting
-from firebase_config import db
+# from firebase_config import db  # Temporairement désactivé pour debug Railway
+db = None
 from routers import backtesting
 
 app = FastAPI(title="Oracle Portfolio WOW V1 - Real Data Backend")
