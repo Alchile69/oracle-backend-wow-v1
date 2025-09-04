@@ -140,6 +140,17 @@ async def _get_backtest_history() -> List[Dict]:
     
     return history
 
+@router.get("/health")
+async def backtest_health():
+    """Health check for backtesting module"""
+    return {
+        "status": "healthy",
+        "module": "backtesting",
+        "version": "0.3.3",
+        "firestore_available": FIRESTORE_AVAILABLE,
+        "timestamp": datetime.now().isoformat()
+    }
+
 @router.post("/run", response_model=Dict[str, str])
 async def run_backtest(
     request: BacktestRequest,

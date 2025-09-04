@@ -13,7 +13,7 @@ from routers import backtesting
 app = FastAPI(title="Oracle Portfolio WOW V1 - Real Data Backend")
 
 # Inclure le router backtesting
-app.include_router(backtesting.router) Data Backend")
+app.include_router(backtesting.router)
 
 app.add_middleware(
     CORSMiddleware,
