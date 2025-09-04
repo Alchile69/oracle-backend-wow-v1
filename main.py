@@ -6,6 +6,9 @@ import pandas as pd
 import numpy as np
 from typing import Dict, List, Optional
 
+# Version pour forcer redéploiement Railway
+VERSION = "2.1.0-debug"
+
 # Import Firebase config et router backtesting
 from firebase_config import db
 from routers import backtesting
