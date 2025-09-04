@@ -12,8 +12,7 @@ import math
 import json
 
 # Firebase imports for persistence
-# from firebase_config import db  # Temporairement désactivé pour Railway
-db = None
+from firebase_config import db
 
 # Import models and services
 from models.backtest import (

@@ -5,16 +5,22 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 from typing import Dict, List, Optional
+import os
+import uvicorn
 
 # Version pour forcer redéploiement Railway
 VERSION = "2.1.0-debug"
 
 # Import Firebase config et router backtesting
-# from firebase_config import db  # Temporairement désactivé pour debug Railway
-db = None
+from firebase_config import db
 from routers import backtesting
 
 app = FastAPI(title="Oracle Portfolio WOW V1 - Real Data Backend")
+
+# HEALTHCHECK RAILWAY
+@app.get("/healthz")
+def health():
+    return {"status": "ok"}
 
 # Inclure le router backtesting
 app.include_router(backtesting.router)
@@ -319,4 +325,9 @@ async def test_backtest_import():
         return {"status": "import_ok", "router_available": True}
     except Exception as e:
         return {"status": "import_error", "error": str(e)}
+
+# RAILWAY START
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
