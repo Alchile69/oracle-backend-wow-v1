@@ -300,3 +300,19 @@ async def get_allocations():
         "strategy": "Equal Weight",
         "lastRebalance": datetime.now().isoformat()
     }
+
+
+@app.get("/api/test/simple")
+async def test_simple():
+    """Test endpoint simple pour debug"""
+    return {"status": "test_ok", "message": "Simple endpoint works"}
+
+@app.get("/api/test/backtest-import")
+async def test_backtest_import():
+    """Test si l'import backtesting fonctionne"""
+    try:
+        from routers import backtesting
+        return {"status": "import_ok", "router_available": True}
+    except Exception as e:
+        return {"status": "import_error", "error": str(e)}
+
